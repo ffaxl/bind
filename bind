@@ -1,11 +1,13 @@
 #!/bin/sh
-set -e
 
 echo "Generating rndc.key"
-rndc-confgen -a -r /dev/urandom -u named
+rndc-confgen -a -r /dev/urandom
 
 [ -f /var/bind/named.ca ] \
   && mv /var/bind/named.ca /etc/bind/db.root \
   && rm -rf /var/bind/*
+
+echo "Fixing ownership"
+chown -R named:named /etc/bind
 
 exec /usr/sbin/named -g -u named

@@ -8,4 +8,4 @@ WORKDIR /
 RUN apk add --no-cache bind
 ADD bind bind
 
-ENTRYPOINT ["/bind"]
+CMD ["/bind"]

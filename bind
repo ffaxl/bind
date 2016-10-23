@@ -1,5 +1,10 @@
 #!/bin/sh
 
+if [ x"$1" = x"sh" ]; then
+  exec $@
+  exit
+fi
+
 echo "Generating rndc.key"
 rndc-confgen -a -r /dev/urandom
 
@@ -10,4 +15,4 @@ rndc-confgen -a -r /dev/urandom
 echo "Fixing ownership"
 chown -R named:named /etc/bind
 
-exec /usr/sbin/named -g -u named
+exec /usr/sbin/named -g -u named $@

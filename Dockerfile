@@ -9,4 +9,4 @@ ADD bind bind
 EXPOSE 53/udp 53/tcp
 VOLUME [/etc/bind]
 
-CMD ["/bind"]
+ENTRYPOINT ["/bind"]
